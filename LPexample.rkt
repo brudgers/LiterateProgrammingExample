@@ -3,6 +3,8 @@
 
 @code{LPexample.rkt} is the source file for this document
 
+
+
 @section{Introduction}
 
 Racket's @code{scribble/lp} language allows programs to be written in the Literate Programming Idiom. The documentation, however, is not very clear. This should not be particularly surprising because Racket's documentation is sometimes lacking when it comes to features outside the core and when something between very basic material and detailed reference is needed.
@@ -15,13 +17,19 @@ Documents written using @code{#lang scribble/lp} use the file extension @code{.r
 
 This means that a Racket Literate Program requires a second document written in either @code{scribble/base} or @code{scribble/manual}. This can be very basic:
 @verbatim|{
-           #lang scribble/manual
+           @(require(for-label 2htdp/image))
            @require[scribble/lp-include]
            @title{Literate Programming Example}
-           This is the result of my recent research on Literate Programming in Racket. The name of this file is @code{LPexample.scrbl}.
+           This is the result of my recent research on Literate Programming in Racket. The name of this file is @code{LPexample.scrbl}. It's not perfect as I still have not solved the problem of broken links, but I'm working on it.
            @lp-include["LPexample.rkt"]}|
 
-The file for weaving has a file extension of @code{.scrbl}. To weave @code{LPexample.rkt} we run the @code{scribble} command on its corresponding @code{.scrbl} file. In this case: @code{LPexample.scrbl}
+The file for weaving has a file extension of @code{.scrbl}. To weave @code{LPexample.rkt} we run the @code{scribble} command on its corresponding @code{.scrbl} file. In this case: @code{LPexample.scrbl}.
+
+Resolving the external references has two parts.
+
+@itemlist[@item{The first is @code{(require(for-label 2htdp/image))} which sets the @emph{documentation phase} references. The @emph{documentation phase} in Racket is analogous to the expansion phase for macros in Racket and other Lisps in that it just focuses on modifying the source code rather than compiling it.}                                                            @item{The second step is calling the scribble command with the appropriate flags. The command to weave this document is: @commandline{scribble --html +m --redirect-main http://docs.racket-lang.org/ LPexample.scrbl}}]
+
+
 
 @section{Tangling}
 
@@ -92,6 +100,8 @@ The two items which required teasing out from the documentation are:
            @item{Tangling treats the first chunk differently unless the @code{<*>} special name is used.}]
 
 Lastly, it is still unclear to me how to resolve broken references easily. But I'm working on it and I will let you know. Happy Literate Programming, Ben.
+
+Update: 13/12/19 - broken links issue fixed and documented thanks to StackOverflow user Asumu Takikawa.
                                                                         
                                                                       
 
