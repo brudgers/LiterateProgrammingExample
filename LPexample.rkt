@@ -1,7 +1,7 @@
 #lang scribble/lp
 
 
-@code{LPexample.rkt} is the source file for this document
+@code{LPexample.rkt} is the source file for this document. The Github repository is @link["https://github.com/brudgers/LiterateProgrammingExample"]{here}.
 
 
 
@@ -33,20 +33,20 @@ Resolving the external references has two parts.
 
 @section{Tangling}
 
-A @code{scribble/lp} file contains both the code for @emph{tangling} into a program or library and the text for @emph{weaving} into a document. Like its parent @code{scribble}, @code{scribble/lp} allows direct input of text. The code to be tangled is deliniated: 
+A @code{scribble/lp} file contains both the code for @emph{tangling} into a program or library and the text for @emph{weaving} into a document. Like its parent @code{scribble}, @code{scribble/lp} allows direct input of text. The code to be tangled is delineated: 
 @verbatim|{
 @chunk[<example_main>
        <example_requires>
        <example_exports>
        <example_body>]}|
 
-Which matches the source for this output from the weaving proccess:
+Which matches the source for this output from the weaving process:
 
 @chunk[<example_main>
        <example_importExport>
        <example_body>]
 
-Beacuse this is the first @verbatim|{@chunk}| it is treated as the @emph{main chunk}. This is mentioned briefly near the bottom of the @link["http://docs.racket-lang.org/scribble/lp.html"]{@code{scribble/lp} documentation}. If you don't want the first @verbatim|{@chunk}| to serve as the main chunk, then: 
+Because this is the first @verbatim|{@chunk}| it is treated as the @emph{main chunk}. This is mentioned briefly near the bottom of the @link["http://docs.racket-lang.org/scribble/lp.html"]{@code{scribble/lp} documentation}. If you don't want the first @verbatim|{@chunk}| to serve as the main chunk, then: 
 
 @verbatim|{
 @chunk[<*>
@@ -54,9 +54,9 @@ Beacuse this is the first @verbatim|{@chunk}| it is treated as the @emph{main ch
        <example_exports>
        <example_body>]}|
 
-can be placed anywhere in the document to serve as the main chunk. Having tried it, it really doesn't add anything for clarity and is unnessary.
+can be placed anywhere in the document to serve as the main chunk. Having tried it, it really doesn't add anything for clarity and is unnecessary.
 
-The reason it is unnessary is that tangling can entail composing the code in a sequence other than what would normally be used in a @code{#lang racket} program. For example, required modules need not be near the top. This chunk:
+The reason it is unnecessary is that tangling can entail composing the code in a sequence other than what would normally be used in a @code{#lang racket} program. For example, required modules need not be near the top. This chunk:
 
 @verbatim|{
 @chunk[<example_importExport>
@@ -99,7 +99,7 @@ The two items which required teasing out from the documentation are:
 @itemlist[@item{Weaving requires a second file where a file with a @code{.rkt} file extension is referenced using @code{lp-include}.}
            @item{Tangling treats the first chunk differently unless the @code{<*>} special name is used.}]
 
-Lastly, it is still unclear to me how to resolve broken references easily. But I'm working on it and I will let you know. Happy Literate Programming, Ben.
+Happy Literate Programming, Ben.
 
 Update: 13/12/19 - broken links issue fixed and documented thanks to StackOverflow user Asumu Takikawa.
                                                                         
